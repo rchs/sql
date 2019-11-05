@@ -1,0 +1,14 @@
+{
+  "name": "@rchs/sql",
+  "version": "1.0.0",
+  "main": "main/index.tsx",
+  "repository": "git@github.com:karkipy/sql.git",
+  "author": "Aashish Karki <aashish.y2z@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build" : "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^3.6.4"
+  }
+}
