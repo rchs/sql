@@ -5,9 +5,12 @@
   "repository": "git@github.com:rchs/sql.git",
   "license": "MIT",
   "scripts": {
-    "build" : "tsc"
+    "build": "tsc"
   },
   "devDependencies": {
     "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "@types/node": "^12.12.7"
   }
 }
