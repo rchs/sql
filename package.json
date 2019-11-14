@@ -1,6 +1,10 @@
 {
   "name": "@rchs/sql",
   "version": "1.0.0",
+  "workspaces": [
+    "src",
+    "lib"
+  ],
   "main": "main/index.ts",
   "repository": "git@github.com:rchs/sql.git",
   "license": "MIT",
@@ -16,5 +20,8 @@
     "ts-jest": "^24.1.0",
     "typescript": "^3.6.4",
     "rimraf": "^3.0.0"
+  },
+  "peerDependencies": {
+    "@rchs-sql/types": "1.0.0"
   }
 }
