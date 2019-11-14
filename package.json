@@ -5,12 +5,16 @@
   "repository": "git@github.com:rchs/sql.git",
   "license": "MIT",
   "scripts": {
-    "build": "tsc"
+    "build": "yarn clean && tsc",
+    "clean": "rimraf lib",
+    "test": "jest"
   },
   "devDependencies": {
-    "typescript": "^3.6.4"
-  },
-  "dependencies": {
-    "@types/node": "^12.12.7"
+    "@types/jest": "^24.0.22",
+    "@types/node": "^12.12.7",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.4",
+    "rimraf": "^3.0.0"
   }
 }
