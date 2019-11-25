@@ -13,7 +13,7 @@ export type GroupDataMap = {
 export type BaseDbConfig = {
   host: string;
   user: string;
-  passwd: string;
+  password: string;
   port: number | string;
   database: string;
 };
