@@ -1,0 +1,20 @@
+{
+  "name": "@rchs/sql-connector-mysql",
+  "version": "1.0.0",
+  "description": "Mysql Connector",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "yarn jest",
+    "clean": "rimraf dist",
+    "build": "yarn clean && tsc -p tsconfig.json",
+    "prepublishOnly": "yarn test && yarn clean && yarn build"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "mysql": "mysqljs/mysql",
+    "@rchs/sql-types": "^1.0.0"
+  }
+}
