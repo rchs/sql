@@ -1,0 +1,7 @@
+{
+  "name": "@rchs/sql-types",
+  "version": "1.0.0",
+  "description": "Common types for the package",
+  "main": "src/index.ts",
+  "license": "MIT"
+}
