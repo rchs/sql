@@ -14,7 +14,7 @@
     "dist"
   ],
   "dependencies": {
-    "mysql": "mysqljs/mysql",
-    "@rchs/sql-types": "^1.0.0"
+    "@rchs/sql-types": "^1.0.0",
+    "mysql2": "^2.0.1"
   }
 }
