@@ -42,7 +42,8 @@ class MySqlConnection implements IConnection {
     []) as MetaData[];
     
     return {
-      records: relations,
+      rowCount: meta.length ? relations.length : 0,
+      records: meta.length ? relations : [],
       metaData: meta,
     } as RecordSet;
   }
@@ -72,7 +73,7 @@ class MySqlConnection implements IConnection {
   }
 
   async release() {
-    await this.connection.relase();
+    await this.connection.release();
     return true;
   }
 
@@ -82,6 +83,10 @@ class MySqlConnection implements IConnection {
 
   async startTransaction() {
     await this.connection.beginTransaction();
+  }
+
+  escape(s: string) {
+    return this.connection.escape(s);
   }
 }
 

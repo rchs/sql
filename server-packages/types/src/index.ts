@@ -1,7 +1,7 @@
 export type Query = {
   name?: string;
   text: string;
-  values?: string[];
+  values?: RecordElement[];
 };
 export type GroupDataMap = {
   name: string;
@@ -35,13 +35,20 @@ export type RecordSet = {
 export interface IConnection {
   startTransaction(): Promise<void>;
   commit(): Promise<void>;
-  rollback(error?: string): void;
+  rollback(error?: string): Promise<void>;
   query(query: Query): Promise<RecordSet>;
   release(): Promise<boolean>;
   getAllTables(): Promise<Table[]>;
   getDatabase(): string;
+  escape(s: string): string,
 };
 export interface IPool {
   accquire(): Promise<IConnection>;
   end(): Promise<boolean>;
+};
+export type BaseConfig = {
+  pool: IPool,
+  migrations?: string,
+  seed?: string,
+  queryfiles?: string[],
 };
