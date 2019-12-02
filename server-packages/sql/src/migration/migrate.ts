@@ -34,15 +34,15 @@ export async function migrate(connection: IConnection, folder: string) {
       // Execute sql given in file sequentially
       // const revisions = getSqlRevisions(file);
       const revisions = QueryfileReader(file);
-      console.log(versions);
-      console.log(revisions);
       const fromRevision = version === currentDbVersion.version ? currentDbVersion.revision + 1 : 0;
 
       for (let j = fromRevision; j < revisions.length; j += 1) {
         // eslint-disable-next-line no-console
         console.log(`[Migration] Running migration ${version}.${j}`);
-        const revision = revisions[j]
+        const revision = revisions[j];
         for(let k = 0; k < revision.length; k++) {
+          console.log(revision[k]);
+          console.log("*******************");
           await connection.query({text: revision[k]} as Query);
         }
       }

@@ -33,9 +33,11 @@ export function QueryfileReader(file: string): string[][] {
         }
 
         const importedSqls = QueryfileReader(importedFile);
-        importedSqls.forEach((s) => result[rev].push(
-          s.reduce((acc, val) => {acc += val; return acc;}, '')
-        ));
+        importedSqls.forEach((s) => { 
+          s.forEach((sql) => {
+            result[rev].push(sql);
+          });
+        });
       }
     } else {
       sql += `${sql ? ' ' : ''}${line}`;
