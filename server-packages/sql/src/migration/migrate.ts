@@ -3,7 +3,8 @@ import { Query, IConnection } from '@rchs/sql-types';
 import { MIGRATION_IDENT } from './constants';
 import { getCurrentDbHead } from './getCurrentDbHead';
 import { getAllVersions } from './versions';
-import { getSqlRevisions } from './revisions';
+// import { getSqlRevisions } from './revisions';
+import { QueryfileReader } from '../utils/QueryfileReader';
 
 /*
 Should create migration table if not exists
@@ -31,7 +32,10 @@ export async function migrate(connection: IConnection, folder: string) {
       const { version, file } = versions[i];
 
       // Execute sql given in file sequentially
-      const revisions = getSqlRevisions(file);
+      // const revisions = getSqlRevisions(file);
+      const revisions = QueryfileReader(file);
+      console.log(versions);
+      console.log(revisions);
       const fromRevision = version === currentDbVersion.version ? currentDbVersion.revision + 1 : 0;
 
       for (let j = fromRevision; j < revisions.length; j += 1) {

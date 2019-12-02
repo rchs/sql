@@ -1,7 +1,9 @@
 import { Query, IConnection } from '@rchs/sql-types';
+
+import { QueryfileReader } from '../utils/QueryfileReader';
+
 import { getCurrentDbSeedHead } from './getCurrentDbSeedHead';
 import { getAllVersions } from './versions';
-import { getSqlRevisions } from './revisions';
 import { SEED_IDENT } from './constants';
 
 export async function seed(connection: IConnection, folder: string) {
@@ -25,7 +27,7 @@ export async function seed(connection: IConnection, folder: string) {
       const { version, file } = versions[i];
 
       // Execute sql given in file sequentially
-      const revisions = getSqlRevisions(file);
+      const revisions = QueryfileReader(file);
       const fromRevision = version === currentDbSeedVersion.version ? currentDbSeedVersion.revision + 1 : 0;
 
       for (let j = fromRevision; j < revisions.length; j += 1) {

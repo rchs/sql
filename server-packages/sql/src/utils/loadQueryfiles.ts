@@ -16,8 +16,15 @@ export function loadQueryfiles(paths: string[]) {
       if(!result[name])
         result[name] = {sql: ''};
 
-      if(ext === 'sql')
-        result[name].sql = QueryfileReader(resolve(folder, file)).join(' ');
+      if(ext === 'sql') {
+        const sql = QueryfileReader(resolve(folder, file));
+        result[name].sql = sql.reduce((acc, val) => {
+          return val.reduce((acc, val) => {
+            acc += val; 
+            return acc;
+          }, acc);
+        }, '');
+      }
       else if (ext === 'json')
         result[name].group = JSON.parse(readFileSync(resolve(folder, file), 'utf-8')) as GroupDataMap;
     });

@@ -74,7 +74,7 @@ export class SqlDb {
       await connection.startTransaction();
       const queryfiles: {[name: string]: Queryfile} = {};
       const dbSession: DbSession = {
-        query: connection.query,
+        query: connection.query.bind(connection),
         queryfile: new Proxy (queryfiles, {
           'get': (obj, prop) => {
             const key = prop.toString();
