@@ -1,4 +1,4 @@
-import { Query, IConnection } from '@rchs/sql-types';
+import { Query, IConnection, RecordElement } from '@rchs/sql-types';
 
 import { QueryfileReader } from '../utils/QueryfileReader';
 
@@ -6,7 +6,10 @@ import { getCurrentDbSeedHead } from './getCurrentDbSeedHead';
 import { getAllVersions } from './versions';
 import { SEED_IDENT } from './constants';
 
-export async function seed(connection: IConnection, folder: string) {
+export async function seed(
+  connection: IConnection, 
+  folder: string, 
+  variables: {[name: string]: RecordElement}) {
   try {
     await connection.query({
       text: 'CREATE TABLE IF NOT EXISTS rchs_sql_config(id varchar(32) NOT NULL PRIMARY KEY, value json default null)'
@@ -35,6 +38,12 @@ export async function seed(connection: IConnection, folder: string) {
         console.log(`[Migration] Running migration ${version}.${j}`);
         const revision = revisions[j]
         for(let k = 0; k < revision.length; k++) {
+          let sql = revision[k];
+          (sql.match(new RegExp('\\${([^}]+)}')) || []).forEach((m) => {
+            const key = m.replace(new RegExp('\\$|{|}', 'g'), '');
+            const value = variables[key];
+            sql = sql.replace(m, value);
+          });
           await connection.query({text: revision[k]} as Query);
         }
       }
