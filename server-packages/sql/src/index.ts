@@ -51,12 +51,12 @@ export class SqlDb {
     }
   }
 
-  async runSeed() {
+  async runSeed(variables: {[name: string]: any }) {
     if(this.seed) {
       const connection = await this.pool.accquire();
       await connection.startTransaction();
       try {
-        await seed(connection, this.seed);
+        await seed(connection, this.seed, variables);
         await connection.commit();
       } catch(e) {
         await connection.rollback();
