@@ -1,7 +1,6 @@
 {
   "name": "@rchs/sql-workspace",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "git@github.com:rchs/sql.git",
   "license": "MIT",
   "private": true,
