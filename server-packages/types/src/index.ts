@@ -43,7 +43,7 @@ export interface IConnection {
   escape(s: string): string,
 };
 export interface IPool {
-  accquire(): Promise<IConnection>;
+  acquire(): Promise<IConnection>;
   end(): Promise<boolean>;
 };
 export type BaseConfig = {

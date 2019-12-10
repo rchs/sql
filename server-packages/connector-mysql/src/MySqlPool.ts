@@ -99,7 +99,7 @@ export class MySqlPool implements IPool {
     this.db = config.database;
   }
   
-  async accquire() {
+  async acquire() {
     let connection = await this.pool.getConnection();
     return new MySqlConnection(connection, this.db);
   }

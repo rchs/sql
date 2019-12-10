@@ -36,7 +36,7 @@ export class SqlDb {
   async migrate() {
     // NOTE: MySQL has implicit commit. So rollback on create/alter tables may not work
     if(this.migrations) {
-      const connection = await this.pool.accquire();
+      const connection = await this.pool.acquire();
       await connection.startTransaction();
       try {
         await migrate(connection, this.migrations);
@@ -53,7 +53,7 @@ export class SqlDb {
 
   async runSeed(variables: {[name: string]: any }) {
     if(this.seed) {
-      const connection = await this.pool.accquire();
+      const connection = await this.pool.acquire();
       await connection.startTransaction();
       try {
         await seed(connection, this.seed, variables);
@@ -69,7 +69,7 @@ export class SqlDb {
   }
 
   async execute(cb: (dbSession: DbSession) => Promise<void>) {
-    const connection = await this.pool.accquire();
+    const connection = await this.pool.acquire();
     try {
       await connection.startTransaction();
       const queryfiles: {[name: string]: Queryfile} = {};

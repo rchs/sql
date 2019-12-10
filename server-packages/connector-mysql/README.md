@@ -14,5 +14,5 @@ const pool = new MySqlPool({
 
 Acquire Connection
 async function conn() {
-  const connection = await pool.accquire();
+  const connection = await pool.acquire();
 }
