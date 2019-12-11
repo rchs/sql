@@ -4,6 +4,9 @@
   "repository": "git@github.com:rchs/sql.git",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "test": "yarn jest"
+  },
   "workspaces": [
     "server-packages/*",
     "demo/*"
