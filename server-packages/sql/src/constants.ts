@@ -1,0 +1,1 @@
+export const CONFIG_TABLE_NAME = 'rchs_sql_config';

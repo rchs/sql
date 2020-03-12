@@ -1,0 +1,19 @@
+{
+  "name": "@rchs/sql",
+  "version": "1.0.0",
+  "description": "SQL db lib",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "yarn jest",
+    "clean": "rimraf dist",
+    "build": "yarn clean && tsc -p tsconfig.json",
+    "prepublishOnly": "yarn test && yarn clean && yarn build"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@rchs/sql-types": "^1.0.0"
+  }
+}
